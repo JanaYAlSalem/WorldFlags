@@ -21,15 +21,12 @@ class OverviewViewModel : ViewModel() {
         getflagPhotos()
     }
 
-    /**
-     * Gets Mars photos information from the Mars API Retrofit service and updates the
-     * [MarsPhoto] [List] [LiveData].
-     */
+
     private fun getflagPhotos() {
         viewModelScope.launch {
             try {
                 val listResult = flagApi.retrofitService.getPhotos()
-                _status.value = "Success: ${listResult.size} Mars photos retrieved"
+                _status.value = "Success: ${listResult.data.size} photos retrieved"
             } catch (e: Exception) {
                 _status.value = "Failure: ${e.message}"
             }
