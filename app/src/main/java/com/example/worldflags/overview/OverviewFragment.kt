@@ -1,4 +1,4 @@
-package com.example.worldflags.Overview
+package com.example.worldflags.overview
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,8 +21,8 @@ class OverviewFragment : Fragment() {
     ): View? {
         val binding = FragmentOverviewBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        binding.overviewFragment = viewModel
-
+        binding.overViewModel = viewModel
+        binding.photosGrid.adapter = PhotoGridAdapter()
         return binding.root
     }
 }

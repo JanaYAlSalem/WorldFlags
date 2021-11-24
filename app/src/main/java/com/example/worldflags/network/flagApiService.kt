@@ -8,7 +8,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
 private const val BASE_URL =
-    "https://countriesnow.space/api/v0.1/countries/flag" //countriesnow.space/api/v0.1/countries/flag/images
+    "https://countriesnow.space/api/v0.1/countries/flag/" //countriesnow.space/api/v0.1/countries/flag/images
 
 
 private val moshi = Moshi.Builder()
