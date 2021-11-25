@@ -11,19 +11,6 @@ import com.example.worldflags.overview.PhotoGridAdapter
 
 
 
-//@BindingAdapter("imageUrl")
-//fun bindImage(imgView: ImageView, imgUrl: String?, name : String? , textView: TextView) {
-//    imgUrl?.let {
-//        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-//        imgView.load(imgUri)
-//    }
-//}
-//
-//@BindingAdapter("textset")
-//fun bindText(name : String? , textView: TextView) {
-//    textView.setText(name)
-//}
-
 @BindingAdapter("imageUrl")
 fun ImageView.bind(imageUrl: String?){
     imageUrl?.let {
@@ -34,6 +21,13 @@ fun ImageView.bind(imageUrl: String?){
         }
     }
 }
+
+
+@BindingAdapter("textset")
+fun bindText(textView: TextView,name : String?) {
+    textView.setText(name)
+}
+
 
 
 @BindingAdapter("listData")
