@@ -10,11 +10,15 @@ import kotlinx.coroutines.launch
 
 
 
+enum class FlagsApiStatus { LOADING, ERROR, DONE }
 
 class OverviewViewModel : ViewModel() {
 
-    private val _status = MutableLiveData<String>()
-    val status: LiveData<String> = _status
+    /*
+    * status of notworks
+     */
+    private val _status = MutableLiveData<FlagsApiStatus>()
+    val status: LiveData<FlagsApiStatus> = _status
 
     /*
 * all list image
@@ -29,6 +33,7 @@ class OverviewViewModel : ViewModel() {
 
     private fun getflagPhotos() {
         viewModelScope.launch {
+            _status.value = FlagsApiStatus.LOADING // loading in first call of getflagPhotos.
             try {
                 /*
                  * OR we can write it directory like :
@@ -38,9 +43,11 @@ class OverviewViewModel : ViewModel() {
                  */
                 val listResult = flagApi.retrofitService.getPhotos()
                 _photos.value = listResult.data
-                _status.value =  "Success: Mars properties retrieved"
+                _status.value = FlagsApiStatus.DONE // when data is returned
             } catch (e: Exception) {
-                _status.value = "Failure: ${e.message}"
+                _status.value = FlagsApiStatus.ERROR // when data is not return
+                _photos.value = listOf()
+
             }
         }
     }

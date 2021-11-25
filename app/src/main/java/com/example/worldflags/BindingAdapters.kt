@@ -1,6 +1,7 @@
 package com.example.worldflags
 
 import android.net.Uri
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
@@ -12,6 +13,7 @@ import coil.decode.SvgDecoder
 import coil.load
 import coil.request.ImageRequest
 import com.example.worldflags.network.FlagPhoto
+import com.example.worldflags.overview.FlagsApiStatus
 import com.example.worldflags.overview.PhotoGridAdapter
 
 
@@ -61,4 +63,21 @@ fun RecyclerView.bindRecyclerView(data: List<FlagPhoto>?
 
     val adapter = this.adapter as PhotoGridAdapter
     adapter.submitList(data)
+}
+
+@BindingAdapter("flagsApiStatus")
+fun bindStatus(statusImageView: ImageView, status: FlagsApiStatus?) {
+    when (status) {
+        FlagsApiStatus.LOADING -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.loading_img)
+        }
+        FlagsApiStatus.ERROR -> {
+            statusImageView.visibility = View.VISIBLE
+            statusImageView.setImageResource(R.drawable.ic_connection_error)
+        }
+        FlagsApiStatus.DONE -> {
+            statusImageView.visibility = View.GONE
+        }
+    }
 }
