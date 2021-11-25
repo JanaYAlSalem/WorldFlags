@@ -5,15 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.worldflags.databinding.GridViewItemBinding
-import com.example.worldflags.databinding.GridViewItemBindingImpl
 import com.example.worldflags.network.FlagPhoto
 
 
 class PhotoGridAdapter : androidx.recyclerview.widget.ListAdapter<FlagPhoto, PhotoGridAdapter.FlagPhotoViewHolder>(DiffCallback) {
 
     class FlagPhotoViewHolder(private var binding: GridViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(list : List<FlagPhoto> ) { // FlagPhoto(name: String,flag: String
-            binding.photo = list
+        fun bind(photoOfFlag : FlagPhoto ) { // FlagPhoto(name: String,flag: String
+            binding.photo = photoOfFlag
             binding.executePendingBindings()
         }
     } // end FlagPhotoViewHolder
