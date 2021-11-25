@@ -19,8 +19,8 @@ import com.example.worldflags.overview.PhotoGridAdapter
 
 
 @BindingAdapter("imageUrl")
-fun ImageView.bind(photoUrl: String?){
-    photoUrl?.let {
+fun ImageView.bind(imageUrl: String?){
+    imageUrl?.let {
 
         val imageLoader = ImageLoader.Builder(this.context)
             .componentRegistry { add(SvgDecoder(context)) }
@@ -29,20 +29,23 @@ fun ImageView.bind(photoUrl: String?){
         val request = ImageRequest.Builder(this.context)
             .crossfade(true)
             .crossfade(500)
-            .data(photoUrl)
+            .data(imageUrl)
             .target(this)
             .build()
 
-        imageLoader.enqueue(request)
-    }
-}
 
+        imageLoader.enqueue(request)
+        }
+
+    }
+
+// if not svg photos
 //fun ImageView.bind(imageUrl: String?){
 //    imageUrl?.let {
 //        val photoUri = imageUrl.toUri().buildUpon().scheme("https").build()
 //        this.load(photoUri) {
 //            placeholder(R.drawable.loading_img)
-//            error(R.drawable.ic_connection_error)
+//            error(R.drawable.ic_broken_image)
 //        }
 //    }
 //}
@@ -70,7 +73,7 @@ fun bindStatus(statusImageView: ImageView, status: FlagsApiStatus?) {
     when (status) {
         FlagsApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.loading_img)
+            statusImageView.setImageResource(R.drawable.loading_animation)
         }
         FlagsApiStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
