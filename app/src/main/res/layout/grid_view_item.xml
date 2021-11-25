@@ -24,18 +24,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/backgrounds/scenic" />
+
     <TextView
-        android:id="@+id/Title_name"
-        android:layout_width="160dp"
-        android:layout_height="30dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/flag_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:textUrl="@{photo.name}"
-        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@{photo.name}"
+        android:gravity="center"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
